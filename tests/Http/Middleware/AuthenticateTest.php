@@ -4,6 +4,7 @@ namespace Canvas\Tests\Http\Middleware;
 
 use Canvas\Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 /**
  * Class AuthorizeTest.
@@ -74,6 +75,7 @@ class AuthenticateTest extends TestCase
      * @param  $method
      * @param  $endpoint
      */
+    #[DataProvider('protectedRoutesProvider')]
     public function testUnauthenticatedUsersAreRedirectedToLogin($method, $endpoint): void
     {
         $this->assertGuest()

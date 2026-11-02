@@ -4,6 +4,7 @@ namespace Canvas\Tests\Http\Middleware;
 
 use Canvas\Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 /**
  * Class AdminTest.
@@ -45,6 +46,7 @@ class AdminTest extends TestCase
      * @param  $method
      * @param  $endpoint
      */
+    #[DataProvider('protectedRoutesProvider')]
     public function testContributorAccessIsRestricted($method, $endpoint)
     {
         $this->actingAs($this->contributor, 'canvas')
@@ -58,6 +60,7 @@ class AdminTest extends TestCase
      * @param  $method
      * @param  $endpoint
      */
+    #[DataProvider('protectedRoutesProvider')]
     public function testEditorAccessIsRestricted($method, $endpoint)
     {
         $this->actingAs($this->editor, 'canvas')
@@ -71,6 +74,7 @@ class AdminTest extends TestCase
      * @param  $method
      * @param  $endpoint
      */
+    #[DataProvider('protectedRoutesProvider')]
     public function testAdminAccessIsGranted($method, $endpoint)
     {
         $this->actingAs($this->admin, 'canvas')
